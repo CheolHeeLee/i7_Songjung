@@ -1,26 +1,36 @@
 ﻿#include "pch.h"
+#include "stack1.h"
 #include <iostream>
 #include <complex>
+#include <array>
 
 using namespace std;
 
 int main()
 {
-	//complex<float> c1(1,1);
-	//complex<float> c2(2, 2);
+	array<string, 3>  myArray = { "Hi", "There!", "Hello" };
+	int a;
+	Stack<int> intStack;
+	Stack<string> stringStack;
 
-	//cout << ::max(c1, c2) << endl;
-	cout << ::max(10, 20) << endl;
-	cout << ::max(10.0, 20.0) << endl;
-	cout << ::max<double>(10, 20.0) << endl;
+	
+	for (int i =0 ; i<10; i++)
+		intStack.push(i);
 
-	int i = 42;
-	int const& ir = i;
-	cout << ir << endl;
+	for (int i = 0; i < 10; i++)
+	{ 
+		a = intStack.pop();
+		cout << a << endl;
+	}
+	
+	//cout << myArray.size() << endl;
 
-	//static_assert(sizeof(Packet) == sizeof(char)+sizeof(int),"Padding in Packet");
-	//static_assert(sizeof(Packet) == sizeof(char) + sizeof(int), "Padding in Packet");
-	void *vp = nullptr;
-	foo(vp);
-	f_string("Hello World!");
+	for (int i = 0; i < myArray.size(); i++)
+		stringStack.push(myArray[i]);
+
+	stringStack.top();
+
+	for (int i = 0; i < myArray.size(); i++)
+		cout << stringStack.pop() << endl;	
+	
 }

@@ -10,37 +10,47 @@
 #define PCH_H
 
 #include<type_traits>
+#include<cstring>
+#include<string>
 
 // TODO: 여기에 미리 컴파일하려는 헤더 추가
 template<typename T>
-T max(T a, T b)
+T const&  max(T const& a, T const& b)
 {
 	return a > b ? a : b;
 }
 
 template<typename T>
-T foo(T*)
+T const& max(T const& a, T const& b, T const& c)
 {
-	std::cout << "void" << std::endl;
+	return max(max(a, b), c);
 }
 
-template<typename T=std::string> //default argument 정의
-void f_string(T str) 
+char const* max(char const* a, char const* b)
 {
-	std::cout << str << std::endl;
+	return std::strcmp(a, b) > 0 ? a : b;
 }
 
-template<typename T1, typename T2, typename TR>
-TR max(T1 a, T2 b)
+/*
+template<typename T1, typename T2, typename RT>
+RT max(T1 a, T2 b)
 {
 	return a > b ? a : b;
 }
+
 
 template<typename T1, typename T2>
 auto max(T1 a, T2 b) -> decltype(true ? a : b)
 {
 	return a > b ? a : b;
 }
+
+template<typename T1, typename T2, typename RT = std::common_type_t<T1, T2>>
+RT max(T1 a, T2 b)
+{
+	return a > b ? a : b;
+}
+*/
 
 #pragma pack(push, 1)
 struct Packet
